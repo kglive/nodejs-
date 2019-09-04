@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+    function User (name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    User.prototype.getName = function () {
+      console.log(this.name)
+    }
+    User.prototype.getAge = function () {
+      console.log(this.age)
+    }
+
+    let you = new User('马云', 18);
+    you.getName();
+    you.getAge();
+    */
+
+    class User{
+      constructor (name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      getName () {
+        console.log(this.name)
+      }
+      getAge () {
+        console.log(this.age)
+      }
+    }
+    let you = new User('马云', 18);
+    you.getAge()
+    you.getName()
+
+    // 继承
+    class VipUser extends User {
+      constructor (name, age, level) {
+        super(name, age)
+        this.level = level;
+      }
+      getLevel () {
+        console.log(this.level, this.name, this.age)
+      }
+    }
+    let her = new VipUser('强哥', 20, 10);
+    her.getLevel()
+  </script>
+</body>
+</html>

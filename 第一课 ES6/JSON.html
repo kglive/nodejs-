@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let json = {a: 1, b: 2};
+    console.log(JSON.stringify(json)) // {"a":1,"b":2}
+
+    let jsonstr = '{"a": 1, "b": 2, "c": "hello"}';
+    console.log(JSON.parse(jsonstr)); // {a: 1, b: 2, c: "hello"}
+  </script>
+</body>
+</html>

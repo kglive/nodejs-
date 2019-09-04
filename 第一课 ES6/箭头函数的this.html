@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" id="btn" value="按钮">
+  <script>
+    // let person = {
+    //   name: '马云',
+    //   init () {
+    //     document.getElementById('btn').onclick = () => {
+    //       // this指向 person 对象
+    //       console.log(this.name)
+    //     }
+    //   }
+    // }
+    // person.init();
+    // // 马云
+
+    let person = {
+      name: '马云',
+      init: () => {
+        document.getElementById('btn').onclick = () => {
+          // this指向 window 对象
+          console.log(this.name)
+        }
+      }
+    }
+    person.init();
+    // undefined
+  </script>
+</body>
+</html>
