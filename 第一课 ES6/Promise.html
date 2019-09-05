@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* let p = new Promise((resolve, reject) => {
+      $.ajax({
+        url: 'data/arr.json',
+        dataType: 'json',
+        success (data) {
+          resolve(data)
+        },
+        error (error) {
+          reject(error)
+        }
+      })
+    })
+    p.then(data => {
+      console.log('成功了', data)
+    }, err => {
+      console.log('失败了', err)
+    }) */
+
+    /* 
+    function createP (url) {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url,
+          dataType: 'json',
+          success (data) {
+            resolve(data)
+          },
+          error (error) {
+            reject(error)
+          }
+        })
+      })
+    }
+    Promise.all([
+      createP('data/arr.json'),
+      createP('data/json.json')
+    ]).then(data => {
+      console.log('成功了', data)
+    }).catch(err => {
+      console.log('失败了', err)
+    })
+    */
+    // 高版本jQuery 中的 ajax 有Promise版本
+    /* $.ajax({
+      url: 'data/arr.json',
+      dataType: 'json'
+    }).then(data => {
+      console.log('成功了', data)
+    }).catch(err => {
+      console.log('失败了', err)
+    }) */
+
+    Promise.all([
+      $.ajax({ url: 'data/arr.json', dataType: 'json' }),
+      $.ajax({ url: 'data/json.json', dataType: 'json' })
+    ]).then(data => {
+      console.log('成功了', data)
+    }).catch(err => {
+      console.log('失败了', err)
+    })
+  </script>
+</body>
+</html>
