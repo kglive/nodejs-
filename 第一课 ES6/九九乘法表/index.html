@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="KG">
+  <title>The harder,more fortunate</title>
+  <meta name="Keywords" content="关键字">
+  <meta name="Description" content="描述">
+  <link rel="icon" type="image/x-icon" href="" />
+  <link rel="stylesheet" type="text/css" href="" />
+  <script type="text/javascript" src=""></script>
+  <style type="text/css">
+	html,body,div,a,ul,ol,li,img,h1,h2,h3,h4,p,span,i{padding:0px;margin:0px;}
+	#main{
+		width:950px;
+		height:390px;
+		background:url("bg5.jpg"),rgba(0,0,0,0.5);
+		box-shadow:0px 0px 3px #000;
+		margin:20px auto 0px;
+		color:#fff;
+		padding:20px;
+		border-radius:5px;
+		font:400 20px/22px "楷体";
+	}
+  </style>
+ </head>
+ <body>
+	<div id="main" class=""></div>
+
+	<script type="text/javascript">
+	var omain = document.getElementById("main");
+  for(var m = 1;m < 10;m++){
+    for(var n = 1;n<10;n++){
+      if(m >= n){
+        omain.innerHTML += n + '×' + m + '=' + m * n + '&nbsp' + '|' + '&nbsp';
+      }else{
+        omain.innerHTML += "";
+      }
+    }
+    omain.innerHTML += "<hr>";
+  }
+	</script>
+ </body>
+</html>

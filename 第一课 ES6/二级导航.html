@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="Generator" content="EditPlus®" />
+  <meta name="Author" content="KG" />
+  <title>The harder,more fortunate</title>
+  <meta name="Keywords" content="关键字" />
+  <meta name="Description" content="描述" />
+  <link rel="icon" type="image/x-icon" href="" />
+  <link rel="stylesheet" type="text/css" href="" />
+  <script type="text/javascript" src=""></script>
+  <style type="text/css">
+	html,body,div,ul,li,a,h2{margin:0px;padding:0px;}
+	a{color:#999;text-decoration:none;}
+	ul li{list-style-type:none;width:150px;font:400 16px/40px "微软雅黑";text-align:center;}
+	ul li a{color:#fff;}
+	ul li a:hover{color:red;}
+  </style>
+ </head>
+ <body>
+	<div id="main" class="">
+		<h2>软件培训</h2>
+		<ul class="list">
+			<li><a href="javascript:void(0);">JAVA</a></li>
+			<li><a href="javascript:void(0);">web前端</a></li>
+			<li><a href="javascript:void(0);">安卓</a></li>
+			<li><a href="javascript:void(0);">PHP</a></li>
+			<li><a href="javascript:void(0);">C++</a></li>
+			<li><a href="javascript:void(0);">软件测试</a></li>
+			<li><a href="javascript:void(0);">Python</a></li>
+			<li><a href="javascript:void(0);">.net</a></li>
+			<li><a href="javascript:void(0);">大数据</a></li>
+			<li><a href="javascript:void(0);">嵌入式</a></li>
+		</ul>
+	</div>
+	<div class="con">
+		<h2>视觉设计</h2>
+	</div>
+	<ul id="conlist">
+		<li><a href="javascript:void(0);">平面设计</a></li>
+		<li><a href="javascript:void(0);">插画</a></li>
+		<li><a href="javascript:void(0);">网页设计</a></li>
+		<li><a href="javascript:void(0);">电商设计</a></li>
+		<li><a href="javascript:void(0);">UI设计</a></li>
+		<li><a href="javascript:void(0);">影视包装</a></li>
+		<li><a href="javascript:void(0);">美妆</a></li>
+		<li><a href="javascript:void(0);">色彩搭配</a></li>
+		<li><a href="javascript:void(0);">摄影后期</a></li>
+		<li><a href="javascript:void(0);">影视剪辑</a></li>
+	</ul>
+	<script type="text/javascript">
+		var omain = document.getElementById("main");
+		var oh2 = document.getElementsByTagName("h2")[0];
+		var oul = document.getElementsByClassName("list")[0];
+
+
+		omain.style.cssText = "width:150px; height:40px; background:gray; margin:20px 0px 0px 100px; position:relative; cursor:pointer;";
+		oh2.style.font = "400 26px/40px '楷体'";
+		oh2.style.cssText += "text-align:center;"
+		oh2.style.color = "#fff";
+		oul.style.cssText += "width:150px; height:500px; background:rgba(156,156,156,0.8); position:absolute; left:150px;top:0px; border:1px solid gray; display:none; <!-- visibility:hidden; -->";
+
+		omain.onmouseover = function(){
+			/*oul.style.visibility = "visible";*/
+			oul.style.display = "block";
+		}
+		omain.onmouseout = function(){
+			/*oul.style.visibility = "hidden";*/
+			oul.style.display = "none";
+		}
+	</script>
+	<script type="text/javascript">
+		var ocon = document.getElementsByClassName("con")[0];
+		var oconlist = document.getElementById("conlist");
+		var oh2 = document.getElementsByTagName("h2")[1];
+
+		ocon.style.cssText = "width:150px; height:40px; background:gray; margin:100px 0px 0px 100px;";
+		oh2.style.color = "#fff";
+		oh2.style.cssText += "line-height:40px; text-align:center; cursor:pointer;";
+		oconlist.style.background = "#999";
+		oconlist.style.cssText += "width:150px; height:500px; margin-left:250px; margin-top:-40px; border:1px solid gray; display:none;";
+		ocon.onmouseover = function(){
+			oconlist.style.display = "block";
+		}
+		ocon.onmouseout = function(){
+			oconlist.style.display = "none";
+		}
+		oconlist.onmouseover = function(){
+			this.style.display = "block";
+		}
+		oconlist.onmouseout = function(){
+			this.style.display = "none";
+		}
+	</script>
+ </body>
+</html>
