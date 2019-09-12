@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="KG">
+		<title>The harder,more fortunate</title>
+		<meta name="Keywords" content="关键字">
+		<meta name="Description" content="描述">
+		<link rel="icon" type="image/x-icon" href="" />
+		<link rel="stylesheet" type="text/css" href="" />
+		<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+		<style type="text/css">
+			html,body,div,a,ul,ol,li,img,h1,h2,h3,h4,p,span,i,input,label,button,form,table,th,td,tr{padding:0;margin:0;}
+			ul li{list-style-type:none;}
+			a{text-decoration:none;color:#999;}
+			#banner{position:relative;width:730px;height:454px;margin:100px auto;overflow:hidden;}
+			#banner .pic ul{position:absolute;left:-730px;top:0;width:800%;overflow:hidden;}
+			#banner .pic ul li{width:730px;height:454px;float:left;}
+			.tab ul{position:absolute;left:50%;width:170px;margin-left:-85px;height:22px;border-radius:10px;background:rgba(0,0,0,.2);margin-top:424px;}
+			.tab ul li{width:16px;height:16px;background:#fff;border-radius:50%;float:left;margin:3px 6px;cursor:pointer;}
+			.tab ul li.on{background:#db192a;}
+			.btn{display:none;}
+			.btn a{width: 30px;height: 60px;display: block;position: absolute;top: 50%;margin-top: -30px;text-align: center;line-height: 60px;font-family: 黑体;font-size: 30px; background: rgba(0, 0, 0, 0.4);}
+			.btn a.hover{background:rgba(0,0,0,.8);color:#fff;}
+			.btn a.prev{left:0;}
+			.btn a.next{right:0;}
+		</style>
+	</head>
+	<body>
+		<div id="banner" class="">
+			<div class="pic">
+				<ul>
+					<li><a href=""><img src="images/banner3-06.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-01.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-02.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-03.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-04.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-05.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-06.jpg" alt="" /></a></li>
+					<li><a href=""><img src="images/banner3-01.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<div class="tab">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="btn">
+				<a href="javascript:void(0);" class="prev"> < </a>
+				<a href="javascript:void(0);" class="next"> > </a>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			!function(){
+				var $banner = $("#banner");
+				var $picul = $("#banner .pic ul");
+				var $picli = $("#banner .pic ul li");
+				var $tabli = $(".tab ul li");
+				var $btna = $(".btn a");
+				var index = 0;
+				var Timer = null;
+				var data = new Date();
+
+				var width = $picli.width();
+				$tabli.eq(0).addClass("on");
+				
+				$banner.hover(function(){
+					$(".btn").show();
+					clearInterval(Timer);
+				},function(){ 
+					auto(); 
+					$(".btn").hide(); 
+				});
+
+				$btna.hover(function(){
+					$(this).addClass("hover");
+				},function(){ $(this).removeClass("hover"); });
+
+				$tabli.click(function(){
+					if(new Date() - data > 500){
+						data = new Date();
+						index = $(this).index();
+						scroll();
+					}
+				});
+
+				$btna.click(function(){
+					if(new Date() - data > 500){
+						data = new Date();
+						$(this).index()?index++:index--;
+						scroll();
+					}
+				}).mousedown(function(){return false; });
+				
+				auto();
+				function auto(){
+					Timer = setInterval(function(){
+						index++;
+						scroll();
+					},2000);
+				};
+
+				function scroll(){
+					var btnindex = index;
+					if(btnindex > $tabli.length - 1){
+						btnindex = 0;
+					}else if(btnindex < 0){
+						btnindex = $tabli.length - 1
+					}
+					$tabli.eq(btnindex).addClass("on").siblings().removeClass('on');
+					$picul.stop().animate({
+						left : -(index + 1)*width + "px"
+					},300,function(){
+						if(index >= $tabli.length){
+							$picul.css("left", -width + "px");
+							index = 0;
+						}else if(index < 0){
+							$picul.css("left", -width*($tabli.length) + "px");
+							index = $tabli.length - 1;
+						}
+					});
+				};
+			}();
+		</script>
+	</body>
+</html>

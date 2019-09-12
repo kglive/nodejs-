@@ -9,41 +9,46 @@
 <body>
   <script>
     
-    /*
-    let arr = [12,56,76,35,90];
-    let result = arr.map(item => item >= 60 ? '及格' : '不及格')
-    console.log(result); // ["不及格", "不及格", "及格", "不及格", "及格"]
-    */
 
-    /* 
-    let arr = [12,56,76,35,90];
-    let result = arr.reduce((tem, item, index) => {
-      if (index !== arr.length -1) {
-        return tem + item;
-      } else {
-        return (tem + item) / arr.length;
-      }
-    })
-    console.log(result) // 53.8
-    */
+    // let arr = [12,56,76,35,90];
+    // let result = arr.map(item => item >= 60 ? '及格' : '不及格')
+    // console.log(result); // ["不及格", "不及格", "及格", "不及格", "及格"]
 
-    /* 
-    let arr = [12,56,76,35,90];
-    let result = arr.filter(item => {
-      if (item%2 === 0) {
-        return true
-      } else {
-        return false;
-      }
-    })
-    console.log(result) // [12, 56, 76, 90]
-     */
 
-     let arr = [12,56,76,35,90];
-     arr.forEach(item => {
-       console.log(item)
-       // 做任何想做的事情
-     })
+    
+    // let arr = [12,56,76,35,90];
+    // let result = arr.reduce((tem, item, index) => {
+    //   if (index !== arr.length -1) {
+    //     return tem + item;
+    //   } else {
+    //     return (tem + item) / arr.length;
+    //   }
+    // })
+    // console.log(result) // 53.8
+    
+
+
+    // let arr = [12,56,76,35,90];
+    // let result = arr.filter(item => {
+    //   return item%2 === 0;
+    // })
+    // console.log(result) // [12, 56, 76, 90]
+   
+
+    //  let arr = [12,56,76,35,90];
+    //  arr.forEach((item, index) => {
+    //    console.log(item)
+    //    // 做任何想做的事情
+    //  })
+
+      let arr = [12,34];
+      let arr2 = arr;
+
+      arr2[1] = 45;
+      
+      console.log(arr);
+
+
   </script>
 </body>
 </html>

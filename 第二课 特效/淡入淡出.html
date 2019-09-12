@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="KG">
+		<title>京东轮播</title>
+		<meta name="Keywords" content="关键字">
+		<meta name="Description" content="描述">
+		<link rel="icon" type="image/x-icon" href="" />
+		<link rel="stylesheet" type="text/css" href="" />
+		<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+		<style type="text/css">
+			html,body,div,a,ul,ol,li,img,h1,h2,h3,h4,p,span,i,input,label,button,form,table,th,td,tr{padding:0;margin:0;}
+			ul li{list-style-type:none;}
+			a{text-decoration:none;}
+			.banner{
+				position:relative;
+				width:730px;height:454px;
+				margin:50px auto;
+				font-family:"monaco";
+			}
+			.banner .pic li{
+				position:absolute;
+				top:0;left:0;
+				width:730px;height:454px;
+				display:none;
+			}
+			.banner .tab{
+				position:absolute;
+				top:0;left:0;right:0;bottom:0;
+				width:160px;
+				margin:424px auto;
+			}
+			.banner .tab li{
+				width:20px;
+				height:20px;
+				background:#999;
+				border-radius:50%;
+				margin:0 3px;
+				float:left;
+				text-align:center;
+				line-height:20px;
+				color:#FFF;
+				font-size:14px;
+				cursor:pointer;
+				transition:all .5s;
+			}
+			.banner .tab li.on{background:#c00;}
+			.banner .btn{display:none;}
+			.banner .btn a{
+				position:absolute;
+				top:50%;
+				width:30px;
+				height:60px;
+				margin-top:-30px;
+				background:rgba(125,124,125,.5);
+				text-align:center;
+				line-height:60px;
+				font-family:"黑体";
+				color:#fff;
+				cursor:pointer;
+				font-size:24px;
+			}
+			.banner .btn .prev{left:0;}
+			.banner .btn .next{right:0;}
+		</style>
+	</head>
+	<body>
+		<div id="" class="banner">
+			<ul class="pic">
+				<li><a href=""><img src="images/banner3-01.jpg" alt="" /></a></li>
+				<li><a href=""><img src="images/banner3-02.jpg" alt="" /></a></li>
+				<li><a href=""><img src="images/banner3-03.jpg" alt="" /></a></li>
+				<li><a href=""><img src="images/banner3-04.jpg" alt="" /></a></li>
+				<li><a href=""><img src="images/banner3-05.jpg" alt="" /></a></li>
+				<li><a href=""><img src="images/banner3-06.jpg" alt="" /></a></li>
+			</ul>
+			<ul class="tab">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<div class="btn">
+				<a href="javascript:void(0);" class="prev"> < </a>
+				<a href="javascript:void(0);" class="next"> > </a>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			!function(){
+				var $picli = $(".banner .pic li");
+				var $tabli = $(".banner .tab li");
+				var $btni = $(".banner .btn a");
+				var $btn = $(".banner .btn");
+				var $banner = $(".banner");
+				var index = 0;
+				var Timer = null;
+				var time = new Date();
+
+				$picli.eq(0).show();
+				$tabli.eq(0).addClass("on");
+
+				$banner.hover(function(){
+					$btn.show();
+					clearInterval(Timer);
+				},function(){
+					$btn.hide();
+					auto(2000);
+				});
+				
+				
+				$tabli.mouseenter(function(){
+					if(new Date() - time > 500){
+						var i = $(this).index();
+						play(function(){
+							index = i;
+						});
+						time = new Date();
+					}
+				});
+					
+				
+				
+				
+				$btni.click(function(){
+					if(new Date() - time > 500){
+						var i = $(this);
+						play(function(){
+							if ( i.index() ){
+								index++;
+								if( index > $tabli.length - 1 ){
+									index = 0;
+								}
+							}else{
+								index--;
+								if(index < 0){
+									index = $tabli.length - 1;
+								}
+							}
+						});
+						time = new Date();
+					}
+				}).mousedown(function(){return false;});//阻止内容被选中的默认事件
+				
+				auto(2000);
+				function auto(num){
+					Timer = setInterval(function(){
+						play(function(){
+								index++;
+							if( index > $tabli.length - 1 ){
+								index = 0;
+							}
+						});
+					},num);
+				};
+				
+				function play(fn){
+					$picli.eq(index).stop().fadeOut(500);
+
+					fn && fn();
+
+					$picli.eq(index).stop().fadeIn(300);
+					$tabli.eq(index).addClass("on").siblings().removeClass("on");
+				};
+			}();
+		</script>
+	</body>
+</html>
