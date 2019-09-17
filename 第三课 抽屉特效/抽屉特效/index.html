@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Generator" content="EditPlus®">
+        <meta name="Author" content="KG">
+        <title>The harder,more fortunate</title>
+        <meta name="Keywords" content="关键字">
+        <meta name="Description" content="描述">
+        <link rel="icon" type="image/x-icon" href="" />
+        <link rel="stylesheet" type="text/css" href="" />
+        <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+        <style type="text/css">
+            html,body,div,a,ul,ol,li,img,h1,h2,h3,h4,p,span,i,input,label,button,form,table,th,td,tr{padding:0;margin:0;}
+            body{background:url("images/bg.jpg") no-repeat center top;}
+            .wrap{width:1090px;height:429px;margin:160px auto;overflow:hidden;}
+            .wrap ul li{width:100px;height:429px;list-style-type:none;float:left;}
+            .wrap ul{width:120%;}
+            .wrap ul li .txt{width:100px;height:429px;background:rgba(0,0,0,.5);overflow:hidden;}
+            .wrap ul li .txt p{color:#fff;font-size:20px;font-family:'monaco';padding:0px 40px;background:rgba(0,0,0,.5);}
+            .wrap ul li.hover .txt p{background:none;}
+        </style>
+    </head>
+    <body>
+        <div id="" class="wrap">
+            <ul>
+                <li style="background:url('images/1.jpg') no-repeat;">
+                    <div class="txt">
+                        <p>我的个人拉萨之旅丨丨故事之城</p>
+                    </div>
+                </li>
+                <li style="background:url('images/2.jpg') no-repeat;">
+                    <div class="txt">
+                        <p>我的个人拉萨之旅丨丨故事之城</p>
+                    </div>
+                </li>
+                <li style="background:url('images/3.jpg') no-repeat;">
+                    <div class="txt">
+                        <p>我的个人拉萨之旅丨丨故事之城</p>
+                    </div>
+                </li>
+                <li style="background:url('images/4.jpg') no-repeat; width:789px" class="hover">
+                    <div class="txt">
+                        <p>我的个人拉萨之旅丨丨故事之城</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            var $li = $(".wrap ul li");
+            $li.hover(function(){
+                $(this).stop().animate({width : '789px'},500).siblings().stop().animate({width : '100px'},500);
+                $(this).addClass("hover").siblings().removeClass("hover");
+            });
+        </script>
+    </body>
+</html>

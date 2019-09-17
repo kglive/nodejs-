@@ -8,10 +8,11 @@
 </head>
 <body>
   <script>
-    let json = {a: 1, b: 2};
-    console.log(JSON.stringify(json)) // {"a":1,"b":2}
+    //let json = {a: 1, b: 2};
+    //console.log(typeof JSON.stringify(json)) // {"a":1,"b":2}
 
     let jsonstr = '{"a": 1, "b": 2, "c": "hello"}';
+    // let jsonstr = "{a: 1, 'b': 2, 'c': 'hello'}";
     console.log(JSON.parse(jsonstr)); // {a: 1, b: 2, c: "hello"}
   </script>
 </body>
