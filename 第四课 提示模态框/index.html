@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模态框demo</title>
+  <style>
+    .message {
+      min-width: 380px;
+      box-sizing: border-box;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #EBEEF5;
+      position: fixed;
+      left: 50%;
+      /* top: 20px; */
+      transform: translateX(-50%);
+      transition: opacity .3s,transform .4s,top .4s,-webkit-transform .4s;
+      background-color: #edf2fc;
+      padding: 15px 15px 15px 20px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .message .message__icon {
+      margin-right: 10px;
+    }
+    .message p{
+      margin: 0;
+    }
+    .message__content {
+      padding: 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .message__closeBtn {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #C0C4CC;
+      font-size: 16px;
+    }
+    /* success样式 */
+    .message--success {
+      background-color: #f0f9eb;
+      border-color: #e1f3d8;
+    }
+    .message--success .message__content, .icon-success{
+      color: #67C23A;
+    }
+    /* warning样式 */
+    .message--warning {
+      background-color: #fdf6ec;
+      border-color: #faecd8;
+    }
+    .message--warning .message__content, .icon-warning{
+      color: #E6A23C;
+    }
+    /* error样式 */
+    .message--error {
+      background-color: #fef0f0;
+      border-color: #fde2e2;
+    }
+    .message--error .message__content, .icon-error{
+      color: #F56C6C;
+    }
+    .message--info .message__content, .icon-info{
+      color: #909399;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+  <script src="./alert.js"></script>
+</head>
+<body>
+  <p>点击</p>
+    <!-- <div id="alert" class="message message--info" style="top: 20px; z-index: 2000;">
+      <i class="message__icon icon-info"></i>
+      <p class="message__content">恭喜你，这是一条成功消息</p>
+      <i class="message__closeBtn icon-close">×</i>
+    </div> -->
+  <script>
+    $("p").click(() => {
+      messageBox({
+        message: '操作成功',
+        type: 'success',
+        duration: 5000
+      }, () => {
+        // 回调函数
+        console.log('弹窗结束')
+      })
+    })
+  </script>
+</body>
+</html>
