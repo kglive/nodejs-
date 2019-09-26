@@ -1,0 +1,10 @@
+div{
+  width: 50%;
+  height: 50px;
+  line-height: 50px;
+  background: purple;
+  color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px auto;
+}
