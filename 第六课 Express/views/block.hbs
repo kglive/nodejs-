@@ -1,0 +1,17 @@
+<div>
+  <h3>块级表达式</h3>
+  <hr>
+  {{details.name}}
+  <hr>
+  <ul>
+    {{#each likes}}
+    <li>{{name}} - {{price}}</li>
+    {{/each}}
+  </ul>
+  <ul>
+    {{#each others}}
+    <li>{{.}}</li>
+    {{/each}}
+  </ul>
+  
+</div>
