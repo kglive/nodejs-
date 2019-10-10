@@ -2,6 +2,7 @@ const Express = require('express');
 const path = require('path');
 const app = Express();
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 
 // 设置静态目录  
 app.use(Express.static(path.join(__dirname, '/public')));
@@ -15,17 +16,36 @@ app.engine('hbs', exphbs.create({
   // 配置布局主文件
   defaultLayout: 'main',
   // 修改模板文件后缀名；后缀名修改之后，对应的engine名称也要跟着改变
-  extname: '.hbs'
+  extname: '.hbs',
+  // 配置部分模板目录 相对于 setting views 目录的 partials 目录 （默认）
+  partialsDir: '',
+  // 段落使用
+  helpers: {
+    section (name, options) {
+      if (!this._sections) this._sections = {};
+      this._sections[name] = options.fn(this);
+      return null;
+    }
+  }
 }).engine);
 
 app.set('view engine', 'hbs');
 
+
+// 解析网络请求参数 parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// application/json
+app.use(bodyParser.json());
 
 
 
 app.get('/', (req, res) => {
   // return res.send('hello world！')
   res.render('index', { name: '马云', age: '18', address: '电子科技大学成都学院' });
+})
+
+app.get('/login', (req, res) => {
+  console.log('收到前端发来的数据', req.query.username)
 })
 
 app.get('/block', (req, res) => {

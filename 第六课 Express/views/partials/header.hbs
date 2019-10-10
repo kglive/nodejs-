@@ -1,0 +1,20 @@
+
+{{#section 'headcss'}}
+<style>
+#search {
+  border-color: red;
+}
+</style>
+{{/section}}
+
+<div>
+  这是网页头部
+  <input type="text" id="search">
+</div>
+{{#section 'headjs'}}
+<script>
+  document.getElementById('search').onfocus = function () {
+    alert('你正在输入....');
+  }
+</script>
+{{/section}}
