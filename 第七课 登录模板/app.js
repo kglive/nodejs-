@@ -38,13 +38,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-
 app.get('/', (req, res) => {
-  res.render('index', { title: 'welcome my site！' });
+  res.render('login', { title: '用户登录', layout: false});
+})
+app.post('/login', (req, res) => {
+  console.log('后台接收到的数据', req.body.username)
+  return res.redirect(301, '/index')
 })
 
-app.get('/login', (req, res) => {
-  res.render('login', { title: '用户登录'});
+app.get('/index', (req, res) => {
+  res.render('index', { title: 'welcome my site！' });
 })
 
 
