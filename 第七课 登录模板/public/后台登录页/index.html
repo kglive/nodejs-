@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Generator" content="EditPlus®">
+        <meta name="Author" content="KG">
+        <title>后台登录页</title>
+        <meta name="Keywords" content="关键字">
+        <meta name="Description" content="描述">
+        <link rel="icon" type="image/x-icon" href="" />
+        <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+        <style type="text/css">
+            html,body,div,a,ul,ol,li,img,h1,h2,h3,h4,p,span,i,input,label,button,form,table,th,td,tr{padding:0;margin:0;}
+            body{background:url("images/bg.jpg") no-repeat;}
+            #bg{background:rgba(0,0,0,.5);max-width:1920px;max-height:1080px;width:100vw;height:100vh;overflow:hidden;}
+            .wrap-login{width:830px;height:470px;background:rgba(0,0,0,.5);margin:100px auto;padding:5px;}
+            .login{width:760px;height:400px;padding:35px;background:#fff;display:-webkit-inline-box;margin: 0 auto;}
+            .login > div{width:370px;height:360px;box-sizing:border-box;}
+            .login .left{padding-right:8px;border-right:1px solid rgba(125,125,125,.3);padding:40px;margin-right:10px;}
+            .login .left img{display:block;margin:10px auto 50px;}
+            .login .left > p{text-align:center;font-family:"Microsoft Yahei";color:#4b4e52;}
+            .login .left .text1{font-size:20px;font-weight:bolder;}
+            .login .right{padding:20px;}
+            .login .right h2{margin-bottom:20px;}
+            .login .right .p1 input{width:324px;height:40px;line-height:40px;border-radius:5px;border:1px solid #d9d9d9;text-indent:40px;}
+            .login .right .p1{margin-bottom:30px;position:relative;font:400 14px/40px "Microsoft Yahei";}
+            .login .right .p1 label{position:absolute;left:40px;top:0px;color:#ddd;}
+            #user{background:url("images/user.jpg") no-repeat 9px 10px;}
+            #psw{background:url("images/psw.jpg") no-repeat 10px 15px;}
+            .login .right .p2{width:160px;margin-left:200px;font-size:12px;line-height:20px;position:relative;margin-bottom:66px;}
+            .login .right .p2 input{position:absolute;top:4px;left:0px;}
+            .login .right .p2 label{position:absolute;top:0px;left:15px;color:#999;}
+            .login .right .btn{background:#5882f7;margin-top:100px;}
+            .login .right .btn input{border:none;background:transparent;cursor:pointer;font-size:24px;color:#fff;display:block;}
+        </style>
+    </head>
+    <body>
+        <div id="bg" class="">
+            <div class="wrap-login">
+                <div class="login">
+                    <div class="left">
+                        <img src="images/plant.jpg" alt="" width="255" height="178" />
+                        <p class="text1">付出不亚于任何的努力！</p>
+                        <p class="text2">谦虚戒骄，天天反省,集善行，思利他！</p>
+                    </div>
+                    <div class="right">
+                        <h2>湖南海外旅游网后台管理系统</h2>
+                        <form action="">
+                            <p class="p1">
+                                <input type="text" value="" id="user" />
+                                <label for="user" id="user-word">输入用户名</label>
+                            </p>
+                            <p class="p1">
+                                <input type="password" value="" id="psw" />
+                                <label for="psw" id="psw-word">输入密码</label>
+                            </p>
+                            <p class="p2">
+                                <input type="checkbox" id="forget" />
+                                <label for="forget">记住我的登录信息</label>
+                            </p>
+                            <p class="p1 btn">
+                                <input type="submit" value="登录" />
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+        $(function(){
+            var userval = $("#user-word").html();
+            var pswval = $("#psw-word").html();
+            $("#user").focus(function(){
+                $("#user-word").html("");
+            });
+            $("#user").blur(function(){
+                if($(this).val() == ""){
+                    $("#user-word").html(userval);
+                }
+            });
+
+            $("#psw").focus(function(){
+                $("#psw-word").html("");
+            });
+            $("#psw").blur(function(){
+                if($(this).val() == ""){
+                    $("#psw-word").html(pswval);
+                }
+            });
+        });
+        </script>
+    </body>
+</html>

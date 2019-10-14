@@ -1,0 +1,11 @@
+/* 尾部样式 */
+footer {
+  height: 50px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+#body {
+  min-height: 590px;
+}
