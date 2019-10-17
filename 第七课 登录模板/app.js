@@ -3,6 +3,7 @@ const path = require('path');
 const app = Express();
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const { myQuery } = require('./models/mysql');
 
 // 设置静态目录  
 app.use(Express.static(path.join(__dirname, '/public')));
@@ -37,13 +38,47 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // application/json
 app.use(bodyParser.json());
 
-
+// 视图渲染登录页面
 app.get('/', (req, res) => {
   res.render('login', { title: '用户登录', layout: false});
 })
+// 登录动作
 app.post('/login', (req, res) => {
   console.log('后台接收到的数据', req.body.username)
-  return res.redirect(301, '/index')
+  // myQuery("select * from ??", ['user']).then(data => {
+  //   console.log('查询成果', data)
+  // }).catch(err => {
+  //   console.log('查询错误', err.message)
+  // })
+  myQuery('select * from `user` where username=?', [req.body.username]).then(data => {
+    myQuery('select * from `user` where username=? and password=?', [req.body.username, req.body.password]).then(rows => {
+      console.log('查询结果', rows)
+      // 返回登录成功
+      return res.send('登录成功')
+    }).catch(err => {
+      // TODO 错误处理
+    })
+  }).catch(err => {
+    // TODO 错误处理
+  })
+
+
+
+  // select * from user where username=req.body.username 
+  // 明文密码 select * from user where username=req.body.username and password=req.body.password
+  // 密文密码 获取数据库的密文密码
+  // 解密数据库里面的密码
+  // 比对两个密码是或否一致
+
+
+  // select * from user where username=req.body.username
+  // 数据库里里面的password和用户传过来的password比较
+    // rows.password === req.body.password
+  // 很大的BUG存在
+
+
+
+  // return res.redirect(301, '/index')
 })
 
 app.get('/index', (req, res) => {

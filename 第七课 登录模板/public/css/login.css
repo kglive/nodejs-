@@ -1,0 +1,21 @@
+body{background:url("/images/bg.jpg") no-repeat;}
+#bg{background:rgba(0,0,0,.5);max-width:1920px;max-height:1080px;width:100vw;height:100vh;overflow:hidden;}
+.wrap-login{width:830px;height:470px;background:rgba(0,0,0,.5);margin:100px auto;padding:5px;}
+.login{width:760px;height:400px;padding:35px;background:#fff;display:-webkit-inline-box;margin: 0 auto;}
+.login > div{width:370px;height:360px;box-sizing:border-box;}
+.login .left{padding-right:8px;border-right:1px solid rgba(125,125,125,.3);padding:40px;margin-right:10px;}
+.login .left img{display:block;margin:10px auto 50px;}
+.login .left > p{text-align:center;font-family:"Microsoft Yahei";color:#4b4e52;}
+.login .left .text1{font-size:20px;font-weight:bolder;}
+.login .right{padding:20px;}
+.login .right h2{margin-bottom:20px;}
+.login .right .p1 input{width:324px;height:40px;line-height:40px;border-radius:5px;border:1px solid #d9d9d9;text-indent:40px;}
+.login .right .p1{margin-bottom:30px;position:relative;font:400 14px/40px "Microsoft Yahei";}
+.login .right .p1 label{position:absolute;left:40px;top:0px;color:#ddd;}
+#user{background:url("/images/user.jpg") no-repeat 9px 10px;}
+#psw{background:url("/images/psw.jpg") no-repeat 10px 15px;}
+.login .right .p2{width:160px;margin-left:200px;font-size:12px;line-height:20px;position:relative;margin-bottom:66px;}
+.login .right .p2 input{position:absolute;top:4px;left:0px;}
+.login .right .p2 label{position:absolute;top:0px;left:15px;color:#999;}
+.login .right .btn{background:#5882f7;margin-top:100px;}
+.login .right .btn input{border:none;background:transparent;cursor:pointer;font-size:24px;color:#fff;display:block;}
