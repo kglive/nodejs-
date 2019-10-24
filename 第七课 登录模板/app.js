@@ -4,8 +4,9 @@ const app = Express();
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const { myQuery } = require('./models/mysql');
+const { uuid36, encrypt, decrypt } = require('./models/crypto');
 
-// 设置静态目录  
+// 设置静态目录
 app.use(Express.static(path.join(__dirname, '/public')));
 
 
@@ -51,13 +52,15 @@ app.post('/login', (req, res) => {
   //   console.log('查询错误', err.message)
   // })
   myQuery('select * from `user` where username=?', [req.body.username]).then(data => {
-    myQuery('select * from `user` where username=? and password=?', [req.body.username, req.body.password]).then(rows => {
-      console.log('查询结果', rows)
+    console.log('查询结果', data, data[0].password)// 结果是一个数组
+    // 解密判断密码是否一致
+    console.log(decrypt(data[0].password))
+    if (decrypt(data[0].password) === req.body.password) {
       // 返回登录成功
       return res.send('登录成功')
-    }).catch(err => {
-      // TODO 错误处理
-    })
+    } else {
+      return res.send('登录失败， 密码错误')
+    }
   }).catch(err => {
     // TODO 错误处理
   })
@@ -80,6 +83,59 @@ app.post('/login', (req, res) => {
 
   // return res.redirect(301, '/index')
 })
+
+/**
+ * 渲染注册页面
+ */
+app.get('/register', (req, res) => {
+  res.render('register', { title: '用户注册', layout: false });
+});
+
+/**
+ * 注册动作
+ */
+app.post('/register', (req, res) => {
+  // console.log('后台接收到的注册数据', req.body);
+  let { username, password, repassword, sex, email } = req.body;
+  // 数据校验
+  // 用户名不能为空；密码不能为空；两次密码一致；邮箱格式验证
+  if (!username) {
+    // TODO 提示用户名不能为空
+    // return ;
+  }
+  if (!password || !repassword) {
+    // TODO 提示用户两次密码不能为空
+  }
+  if (password !== repassword) {
+    // TODO 两次密码不一致
+  }
+  let VALID_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+  if (!email.match(VALID_EMAIL_REGEX)) {
+    // TODO 邮箱格式不正确
+  }
+
+  // 整理写入数据库的数据项
+  // console.log(uuid36());
+  // console.log(encrypt(password));
+  myQuery('select * from `user` where email=?', [email]).then(data => {
+    console.log(data); // []
+    if (!data.length) {
+      console.log(uuid36(), username, encrypt(password), email, sex);
+      // TODO 没有查出结果
+      myQuery('insert into `user` (`id`, `username`, `password`, `email`, `sex`) values(?,?,?,?,?)', [uuid36(), username, encrypt(password), email, sex]).then(data2 => {
+        console.log(data2);
+        return res.send('注册成功');
+      }).catch(error => {
+        // TODO 数据库错误处理，注册失败
+        return res.send('注册失败');
+      })
+    } else {
+      // TODO 反馈用户，邮箱已经存在
+    }
+  }).catch(error => {
+    // TODO 数据库错误处理
+  })
+});
 
 app.get('/index', (req, res) => {
   res.render('index', { title: 'welcome my site！' });

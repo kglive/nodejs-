@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="KG">
+    <title>{{title}}</title>
+    <meta name="Keywords" content="关键字">
+    <meta name="Description" content="描述">
+    <link rel="icon" type="image/x-icon" href="" />
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>
+    <style>
+      .login .right .p1 {
+        margin-bottom: 10px;
+      }
+      .login .right .p3 {
+        text-align: center;
+      }
+      .login .right .p3 label {
+        margin: 10px;
+      }
+      .login .right .btn {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bg" class="">
+      <div class="wrap-login">
+        <div class="login">
+          <div class="left">
+            <img src="/images/plant.jpg" alt="" width="255" height="178" />
+            <p class="text1">付出不亚于任何的努力！</p>
+            <p class="text2">谦虚戒骄，天天反省,集善行，思利他！</p>
+          </div>
+            <div class="right">
+              <h2>后台内容管理系统</h2>
+              <form action="/register" method="POST">
+                <p class="p1">
+                  <input type="text" name="username" placeholder="请输入登录用户名" value="" id="user" />
+                </p>
+                <p class="p1">
+                  <input type="password" name="password" placeholder="输入密码" value="" id="psw" />
+                </p>
+                <p class="p1">
+                  <input type="password" name="repassword" placeholder="重复输入密码" value="" id="psw" />
+                </p>
+                <p class="p1">
+                  <input type="email" name="email" placeholder="输入邮箱" value="" id="psw" />
+                </p>
+                <p class="p3">
+                  <label for=""><input checked type="radio" name="sex" value="1" />男</label>
+                  <label for=""><input type="radio" name="sex" value="0" />女</label>
+                </p>
+                <p class="p1 btn">
+                  <input type="submit" value="注册" />
+                </p>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

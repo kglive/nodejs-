@@ -10,5 +10,7 @@ module.exports = {
   },
   cookie: {
 
-  }
+  },
+  // 数据加解密
+  secretKey: 'hahsdya'
 }
