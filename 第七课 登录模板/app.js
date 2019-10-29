@@ -3,8 +3,11 @@ const path = require('path');
 const app = Express();
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const expSession = require('express-session');
 const { myQuery } = require('./models/mysql');
 const { uuid36, encrypt, decrypt } = require('./models/crypto');
+const config = require('./config');
 
 // 设置静态目录
 app.use(Express.static(path.join(__dirname, '/public')));
@@ -39,6 +42,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // application/json
 app.use(bodyParser.json());
 
+// 配置cookie和session
+app.use(cookieParser());
+app.use(expSession({
+  key: config.cookie.key, // 设置cookie中保存sessionId的字段名
+  secret: config.cookie.secret, // 通过secret值计算hash值
+  resave: config.cookie.resave, // 强制更新session值
+  saveUninitialized: config.cookie.saveUninitialized, // 初始化cookie值
+  cookie: {
+    maxAge: config.cookie.maxAge
+  }
+}));
+
+
 // 视图渲染登录页面
 app.get('/', (req, res) => {
   res.render('login', { title: '用户登录', layout: false});
@@ -46,18 +62,13 @@ app.get('/', (req, res) => {
 // 登录动作
 app.post('/login', (req, res) => {
   console.log('后台接收到的数据', req.body.username)
-  // myQuery("select * from ??", ['user']).then(data => {
-  //   console.log('查询成果', data)
-  // }).catch(err => {
-  //   console.log('查询错误', err.message)
-  // })
   myQuery('select * from `user` where username=?', [req.body.username]).then(data => {
-    console.log('查询结果', data, data[0].password)// 结果是一个数组
     // 解密判断密码是否一致
-    console.log(decrypt(data[0].password))
     if (decrypt(data[0].password) === req.body.password) {
       // 返回登录成功
-      return res.send('登录成功')
+      // return res.send('登录成功')
+      // http://127.0.0.1:5000/admin
+      res.redirect(303, '/admin')
     } else {
       return res.send('登录失败， 密码错误')
     }
@@ -141,6 +152,12 @@ app.get('/index', (req, res) => {
   res.render('index', { title: 'welcome my site！' });
 })
 
+/**
+ * 渲染后台首页模板
+ */
+app.get('/admin', (req, res) => {
+  return res.render('admin/index');
+})
 
 // 404页面
 app.use((req, res, next) => {
