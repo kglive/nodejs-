@@ -1,0 +1,72 @@
+<section id="mynotes-wrap">
+  {{#each flash}}
+  <div role="alert" class="el-message el-message--{{type}}" style="top: 20px; z-index: 2000;">
+    <p class="el-message__content">{{message}}</p>
+  </div>
+  {{/each}}
+  <script>
+    let msgDom = $('.el-message');
+    for (let i = 0; i < msgDom.length; i++) {
+      $('.el-message').eq(i).animate({
+        top: (i * 50 + 20) + 'px'
+      }, 500, function () {
+        setTimeout(() => {
+          $('.el-message').fadeOut();
+        }, 2000);
+      });
+    }
+  </script>
+  <style>
+    .el-message {
+      min-width: 380px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #EBEEF5;
+      position: fixed;
+      left: 50%;
+      top: -20px;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: #edf2fc;
+      -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+      transition: opacity .3s, top .4s, -webkit-transform .4s;
+      transition: opacity .3s, transform .4s, top .4s;
+      transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+      padding: 15px 15px 15px 20px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .el-message__content {
+      padding: 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .el-message--warning {
+      background-color: #fdf6ec;
+      border-color: #faecd8;
+    }
+
+    .el-message--warning .el-message__content {
+      color: #E6A23C;
+    }
+
+    .el-message--success {
+      background-color: #f0f9eb;
+      border-color: #e1f3d8;
+    }
+
+    .el-message--success .el-message__content {
+      color: #67C23A;
+    }
+  </style>
+</section>
