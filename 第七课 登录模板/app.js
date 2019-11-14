@@ -57,7 +57,11 @@ app.use(expSession({
   }
 }));
 
-
+app.use(function (req, res, next) {
+  res.locals.flash = req.session.flash;
+  delete req.session.flash;
+  next();
+});
 
 app.use('/', frontRouter);
 app.use('/admin', adminRouter);

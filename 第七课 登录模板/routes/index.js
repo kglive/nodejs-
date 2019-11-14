@@ -8,12 +8,27 @@ const { uuid36, encrypt, decrypt } = require('../models/crypto');
 
 // 视图渲染登录页面
 router.get('/', (req, res) => {
-  res.render('login', { title: '用户登录', layout: false});
+  return res.redirect('/login');
+});
+router.get('/login', (req, res) => {
+  res.render('login', { title: '用户登录',  layout: false});
 });
 
 // 登录动作
 router.post('/login', (req, res) => {
   console.log('后台接收到的数据', req.body.username)
+  let errors = [];
+  if (!req.body.username) {
+    errors.push({ type: 'warning', message: '登录用户名不能为空' });
+  }
+  if (!req.body.password) {
+    errors.push({ type: 'warning', message: '登录密码不能为空' });
+  }
+  if (errors.length > 0) {
+    // return res.render('login', { flash: errors, layout: false });
+    req.session.flash = errors;
+    return res.redirect('/login');
+  }
   myQuery('select * from `user` where username=?', [req.body.username]).then(data => {
     // 解密判断密码是否一致
     if (decrypt(data[0].password) === req.body.password) {
@@ -28,12 +43,19 @@ router.post('/login', (req, res) => {
       }
       // 用户信息存储session
       req.session.user = userinfo;
-      res.redirect(303, '/admin')
+      req.session.flash = [{ type: 'success', message: '登录成功' }];
+      res.redirect('/admin');
     } else {
-      return res.send('登录失败， 密码错误')
+      // return res.send('登录失败， 密码错误')
+      // return res.render('login', { flash: [{ type: 'warning', message: '登录失败， 密码错误' }], layout: false });
+      req.session.flash = [{ type: 'warning', message: '登录失败， 密码错误' }];
+      return res.redirect('/login');
     }
   }).catch(err => {
     // TODO 错误处理
+    // return res.render('login', { flash: [{ type: 'warning', message: '用户名不存在' }], layout: false });
+    req.session.flash = [{ type: 'warning', message: '用户名不存在' }];
+    return res.redirect('/login');
   })
 
 

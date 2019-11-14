@@ -26,7 +26,7 @@ small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正�
 li { list-style: none; }
 
 /** 重置文本格式元素 **/
-a { text-decoration: none; color:#fff; }
+a { text-decoration: none; }
 a:hover { text-decoration: none; color:#c06; }
 
 /** 重置表单元素 **/
@@ -54,4 +54,7 @@ iframe{
 }
 .clearfix {
 	zoom:1; /* for IE6 IE7 */
+}
+.fr {
+	float: right;
 }

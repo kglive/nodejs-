@@ -4,6 +4,16 @@
     <p class="el-message__content">{{message}}</p>
   </div>
   {{/each}}
+  {{!-- flash = [
+    {
+      type: '',
+      message: ''
+    },
+    {
+      type: '',
+      message: ''
+    }
+  ] --}}
   <script>
     let msgDom = $('.el-message');
     for (let i = 0; i < msgDom.length; i++) {

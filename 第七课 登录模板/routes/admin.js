@@ -27,10 +27,15 @@ router.get('/', (req, res) => {
   return res.render('admin/index', { userinfo: req.session.user });
 });
 
-// /admin/user
-// router.get('/user', () => {
 
-// });
+/**
+ * 登出
+ */
+router.all('/out', (req, res) => {
+  // req.session.destroy();
+  req.session.user = null;
+  return res.redirect('/');
+});
 
 
 module.exports = router;
