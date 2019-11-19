@@ -47,6 +47,7 @@ router.post('/login', (req, res) => {
       res.redirect('/admin');
     } else {
       // return res.send('登录失败， 密码错误')
+      
       // return res.render('login', { flash: [{ type: 'warning', message: '登录失败， 密码错误' }], layout: false });
       req.session.flash = [{ type: 'warning', message: '登录失败， 密码错误' }];
       return res.redirect('/login');
